@@ -31,6 +31,7 @@ def plot_precision_recall():
     #              by subsequently setting the variable configs.conf_thresh to the values 0.1 ... 0.9 and noted down the results.
     
     # Please create a 2d scatter plot of all precision/recall pairs 
+    pass
 
 
 
@@ -50,7 +51,8 @@ def compute_precision_recall(det_performance_all, conf_thresh=0.5):
     
     # compute recall 
 
-    #print("precision = " + str(precision) + ", recall = " + str(recall) + ", conf_thres = " + str(conf_thresh) + "\n")    
+    #print("precision = " + str(precision) + ", recall = " + str(recall) + ", conf_thres = " + str(conf_thresh) + "\n") 
+    pass   
     
 
 
@@ -60,7 +62,8 @@ def pcl_to_bev(lidar_pcl, configs, vis=True):
 
     # compute bev-map discretization by dividing x-range by the bev-image height
 
-    # create a copy of the lidar pcl and transform all metrix x-coordinates into bev-image coordinates    
+    # create a copy of the lidar pcl and transform all metrix x-coordinates into bev-image coordinates
+    lpcl = lidar_pcl    
 
     # transform all metrix y-coordinates as well but center the foward-facing x-axis on the middle of the image
 

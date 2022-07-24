@@ -49,7 +49,7 @@ sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, EXA_L2)))
 
 # import functions from individual exercise files
 import l2_examples
-# import l2_exercises
+import l2_exercises
 import l1_examples
 import l1_exercises
 
@@ -151,7 +151,7 @@ while True:
         cropped_pcl = l2_examples.crop_pcl(lidar_pcl, configs, False)
 
         # Exercise C2-3-2 : Transform metric point coordinates to BEV space
-        # l2_exercises.pcl_to_bev(cropped_pcl, configs)
+        l2_exercises.pcl_to_bev(cropped_pcl, configs)
 
         # Example C2-3-3 : Minimum and maximum intensity
         # l2_examples.min_max_intensity(lidar_pcl)
