@@ -34,7 +34,7 @@ def plot_precision_recall():
     import matplotlib.pyplot as plt
     P = [0.97, 0.94, 0.93, 0.92, 0.915, 0.91, 0.89, 0.87, 0.82]
     R = [0.738, 0.738, 0.743, 0.746, 0.746, 0.747, 0.748, 0.752, 0.754]
-    plt.scatter(R, P)   
+    plt.scatter(R, P)
     plt.show()
 
 # Exercise C2-3-4 : Compute precision and recall

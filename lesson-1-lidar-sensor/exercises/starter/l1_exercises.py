@@ -30,10 +30,25 @@ def vis_intensity_channel(frame, lidar_name):
 
     print("Exercise C1-5-5")
     # extract range image from frame
+    lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
+    if len(lidar.ri_return1.range_image_compressed)>0:
+        ri = dataset_pb2.MatrixFloat()
+        ri.ParseFromString(zlib.decompress(lidar.ri_return1.range_image_compressed))
+        ri = np.array(ri.data).reshape(ri.shape.dims)
+    ri[ri<0]=0.0
 
     # map value range to 8bit
+    ri_intensity = ri[:,:,1]
+    ri_intensity = np.amax(ri_intensity)/2 * ri_intensity * 255 / (np.amax(ri_intensity) - np.amin(ri_intensity)) 
+    img_intensity = ri_intensity.astype(np.uint8)
 
     # focus on +/- 45° around the image center
+    deg45 = int(img_intensity.shape[1] / 8)
+    ri_center = int(img_intensity.shape[1]/2)
+    img_intensity = img_intensity[:,ri_center-deg45:ri_center+deg45]
+
+    cv2.imshow('intensity image', img_intensity)
+    cv2.waitKey(0)
 
 
 
@@ -52,9 +67,12 @@ def print_pitch_resolution(frame, lidar_name):
 def print_no_of_vehicles(frame):
 
     print("Exercise C1-3-1")    
-
     # find out the number of labeled vehicles in the given frame
     # Hint: inspect the data structure frame.laser_labels
     num_vehicles = 0
-            
+    for label in frame.laser_labels:
+        if label.type == label.TYPE_VEHICLE:
+            num_vehicles = num_vehicles + 1
+
+        
     print("number of labeled vehicles in current frame = " + str(num_vehicles))
